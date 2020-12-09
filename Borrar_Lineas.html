@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ejemplo de JavaScript</title>
+<meta charset="UTF-8">
+<!-- link rel="StyleSheet" href="estilos.css" type="text/css" -->
+<style>
+#todo {
+  width: 800px;
+  margin: 0 auto;
+}
+#textbox{
+  width: 800px;
+  font-size:22px;
+}
+#elDiv {
+  font-size:22px;
+  background-color:#ffffcc;
+  border-width:1px;
+  border-style:dotted;
+  border-color:#ffaa00;
+  display: none;
+  padding:20px;
+  overflow-wrap: break-word;
+}
+#elBoton {
+  font-size:22px;
+}
+body {
+  background-color:lightgray;
+}
+
+</style>
+</head>
+<body>
+
+<script>
+
+function eliminarLineas(value)
+{
+  var copyText = document.getElementById('textbox');
+  copyText.value = copyText.value.replace(/(\r\n|\n|\r)/gm, " ");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+  document.execCommand("copy");
+  myDiv = document.getElementById('elDiv')
+  myDiv.style.display = "block";
+  myDiv.innerHTML = "<b>Texto copiado al porta papeles:</b><br>"+copyText.value
+  copyText.value=''
+}
+</script>
+<div id="todo">
+<form>
+  <textarea id="textbox" rows="10" cols="150" ></textarea>
+  <br>
+  <input id="elBoton" type="button" value="Quitar saltos de linea y copiar al porta papeles" onClick="eliminarLineas()">
+</form>
+<div id="elDiv" >
+
+</div>
+</div>
+</body>
+</html>
